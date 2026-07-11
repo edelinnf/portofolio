@@ -23,6 +23,7 @@ import {
 const NAV_LINKS = [
   { id: 'about', label: 'Tentang' },
   { id: 'experience', label: 'Pengalaman' },
+  { id: 'Project', label: 'Project'},
   { id: 'publication', label: 'Publikasi' },
   { id: 'organization', label: 'Organisasi' },
   { id: 'skills', label: 'Keahlian' },
@@ -64,7 +65,6 @@ const Project = [
     prjct: 'Segmentasi',
     link: 'github.com/edelinnf/Mata-Kuliah-Sistem-Operasi'
   }
-
 ]
 
 const ORGANIZATION = [
@@ -478,6 +478,37 @@ export default function App() {
         <div>
           {EXPERIENCE.map((item, i) => (
             <TimelineItem key={item.company} item={item} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* PROJECT */}
+      <section id="skills" className="px-6 sm:px-10 max-w-6xl mx-auto py-16">
+        <SectionEyebrow icon={Wrench}>Project</SectionEyebrow>
+        <div className="grid sm:grid-cols-3 gap-5">
+          {SKILL_GROUPS.map((group, i) => (
+            <motion.div
+              key={group.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass rounded-2xl p-6"
+            >
+              <h3 className="font-display text-base text-white mb-4">
+                {group.title}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="font-mono text-xs rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-slate-300"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </section>
