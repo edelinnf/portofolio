@@ -59,6 +59,14 @@ const EXPERIENCE = [
   },
 ]
 
+const Project = [
+  {
+    prjct: 'Segmentasi',
+    link: 'github.com/edelinnf/Mata-Kuliah-Sistem-Operasi'
+  }
+
+]
+
 const ORGANIZATION = [
   {
     org: 'Himpunan Mahasiswa Sains Data',
