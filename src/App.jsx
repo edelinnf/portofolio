@@ -15,6 +15,7 @@ import {
   Menu,
   X,
 } from 'lucide-react'
+import { title } from 'framer-motion/client'
 
 /* -------------------------------------------------------------------- */
 /*  Data pulled from Edelin Fortuna's CV                                 */
@@ -23,7 +24,7 @@ import {
 const NAV_LINKS = [
   { id: 'about', label: 'Tentang' },
   { id: 'experience', label: 'Pengalaman' },
-  { id: 'Project', label: 'Project'},
+  { id: 'project', label: 'Proyek'},
   { id: 'publication', label: 'Publikasi' },
   { id: 'organization', label: 'Organisasi' },
   { id: 'skills', label: 'Keahlian' },
@@ -33,7 +34,7 @@ const NAV_LINKS = [
 
 const EXPERIENCE = [
   {
-    company: 'PT Cemerlang Statistika Indonesia baru',
+    company: 'PT Cemerlang Statistika Indonesia (StatsMe!)',
     role: 'Enumerator Proyek — Dinas Kepemudaan, Olahraga & Pariwisata Kab. Sidoarjo',
     period: 'Jun — Jul 2026',
     location: 'Sidoarjo, Indonesia',
@@ -60,10 +61,14 @@ const EXPERIENCE = [
   },
 ]
 
-const Project = [
+const PROJECTS = [
   {
-    prjct: 'Segmentasi',
-    link: 'github.com/edelinnf/Mata-Kuliah-Sistem-Operasi'
+    id: 'cnn-skin-disease',
+    title: 'Klasifikasi Penyakit Kuliat dengan CNN MobileNetV2',
+    description: 'Membandingkan 5 arsitektur Convolutional Neural Network — CNN Dasar, EfficientNet-B0, InceptionV3, MobileNetV2, dan ResNet50 — untuk mengklasifikasikan 9 kelas penyakit kulit dari 2.357 citra dermoskopi (dataset ISIC via Kaggle), guna menemukan arsitektur dengan akurasi dan efisiensi terbaik.',
+    tech: ['Python', 'TensorFlow/Keras', 'CNN', 'MobileNetV2', 'Transfer Learning'],
+    role: 'Data Analyst',
+    link: null,
   }
 ]
 
