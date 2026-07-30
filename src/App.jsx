@@ -1,5 +1,12 @@
 import React, { useMemo, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import profilePhoto from './assets/profile.jpg'
+import gallery1 from './assets/gallery/gallery-1.jpg'
+import gallery2 from './assets/gallery/gallery-2.jpg'
+import gallery3 from './assets/gallery/gallery-3.jpg'
+import gallery4 from './assets/gallery/gallery-4.jpg'
+import gallery5 from './assets/gallery/gallery-5.jpg'
+import gallery6 from './assets/gallery/gallery-6.jpg'
 import {
   Mail,
   Phone,
@@ -17,7 +24,8 @@ import {
   FolderKanban,
   ExternalLink,
   Github,
-  Globe,
+  Camera,
+  ImageOff,
 } from 'lucide-react'
 
 /* -------------------------------------------------------------------- */
@@ -30,6 +38,7 @@ const NAV_LINKS = [
   { id: 'project', label: 'Proyek' },
   { id: 'publication', label: 'Publikasi' },
   { id: 'organization', label: 'Organisasi' },
+  { id: 'gallery', label: 'Dokumentasi' },
   { id: 'skills', label: 'Keahlian' },
   { id: 'awards', label: 'Sertifikat' },
   { id: 'contact', label: 'Kontak' },
@@ -173,6 +182,53 @@ const ORGANIZATION = [
       'Dipercaya sebagai ketua pelaksana program kerja "Ngosa Kata".',
       'Menyalurkan aspirasi akademik mahasiswa Sains Data kepada pihak jurusan.',
     ],
+  },
+]
+
+/* -------------------------------------------------------------------- */
+/*  GALLERY — dokumentasi kegiatan kampus.                               */
+/*  Cara pakai: taruh file foto di src/assets/gallery/, lalu di sini     */
+/*  import fotonya di bagian atas file (lihat contoh import              */
+/*  `profilePhoto` di atas), dan isi field `image` dengan nama variabel  */
+/*  tersebut menggantikan `null`. Tambah/kurangi objek sesuai kebutuhan. */
+/* -------------------------------------------------------------------- */
+
+const GALLERY = [
+  {
+    id: 'gallery-1',
+    image: gallery1,
+    caption: 'Yudisium September Program Studi Sains Data',
+    detail: 'Mahasiswa Sains Data yang mengikuti Yudisium periode September 2025 Fakultas Ilmu Komputer UPN "Veteran" Jawa Timur.',
+  },
+  {
+    id: 'gallery-2',
+    image: gallery2,
+    caption: 'Departemen Advokasi & Kesejahteraan Mahasiswa — HIMASADA',
+    detail: 'Kebersamaan bersama tim advokasi Himpunan Mahasiswa Sains Data saat menjalankan agenda Posko Mahasiswa Baru.',
+  },
+  {
+    id: 'gallery-3',
+    image: gallery3,
+    caption: 'Wisuda ke-96 UPN "Veteran" Jawa Timur',
+    detail: 'Momen kelulusan di depan gedung Fakultas Ilmu Komputer, UPN "Veteran" Jawa Timur.',
+  },
+  {
+    id: 'gallery-4',
+    image: gallery4,
+    caption: 'Seminar Hasil',
+    detail: 'Dokumentasi saya setelah melakukan sidang seminar hasil dan dinyatakan lulus dengan revisi.',
+  },
+  {
+    id: 'gallery-5',
+    image: gallery5,
+    caption: 'Kebersamaan bersama Rekan Organisasi Fakultas Ilmu Komputer',
+    detail: 'Dokumentasi kunjungan dan bincang santai bersama teman-teman BEM Fakultas Ilmu Komputer di luar jam kegiatan formal.',
+  },
+  {
+    id: 'gallery-6',
+    image: gallery6,
+    caption: 'Himpunan Mahasiswa Sains Data',
+    detail: 'Foto bersama pengurus dan anggota Himpunan Mahasiswa Sains Data (HIMASADA).',
   },
 ]
 
@@ -449,12 +505,97 @@ function ProjectCard({ project, index }) {
   )
 }
 
+function GalleryCard({ item, index, onOpen }) {
+  return (
+    <motion.button
+      type="button"
+      onClick={() => onOpen(item)}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: 'easeOut' }}
+      whileHover={{ y: -4 }}
+      className="glass rounded-2xl overflow-hidden text-left group cursor-pointer"
+    >
+      <div className="aspect-[4/3] w-full relative bg-white/5">
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={item.caption}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-muted">
+            <ImageOff size={28} strokeWidth={1.5} />
+            <span className="font-mono text-[11px]">Foto belum ditambahkan</span>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      </div>
+      <div className="p-4">
+        <p className="text-sm text-white leading-snug">{item.caption}</p>
+        <p className="text-xs text-muted mt-1">{item.detail}</p>
+      </div>
+    </motion.button>
+  )
+}
+
+function GalleryLightbox({ item, onClose }) {
+  return (
+    <AnimatePresence>
+      {item && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[60] bg-ink-950/85 backdrop-blur-sm flex items-center justify-center p-6"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.92 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
+            className="glass-strong rounded-2xl overflow-hidden max-w-lg w-full shadow-glass"
+          >
+            <div className="aspect-[4/3] w-full bg-white/5">
+              {item.image ? (
+                <img src={item.image} alt={item.caption} className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-muted">
+                  <ImageOff size={32} strokeWidth={1.5} />
+                  <span className="font-mono text-xs">Foto belum ditambahkan</span>
+                </div>
+              )}
+            </div>
+            <div className="p-5 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm text-white">{item.caption}</p>
+                <p className="text-xs text-muted mt-1">{item.detail}</p>
+              </div>
+              <button
+                onClick={onClose}
+                className="shrink-0 rounded-full p-1.5 text-slate-300 hover:text-white hover:bg-white/10 transition"
+                aria-label="Tutup"
+              >
+                <X size={18} />
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
 /* -------------------------------------------------------------------- */
 /*  App                                                                   */
 /* -------------------------------------------------------------------- */
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeGalleryItem, setActiveGalleryItem] = useState(null)
   const { scrollYProgress } = useScroll()
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
 
@@ -578,14 +719,6 @@ export default function App() {
               >
                 <Github size={16} /> GitHub
               </a>
-              <a
-                href="https://edelinfortunaporto.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm text-slate-200 hover:border-teal-accent/50 transition"
-              >
-                <Globe size={16} /> Portofolio
-              </a>
             </div>
           </motion.div>
 
@@ -593,7 +726,18 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+            className="flex flex-col items-center lg:items-end gap-6"
           >
+            <div className="relative">
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-teal-accent/20 to-violet-accent/20 blur-xl" />
+              <div className="glass-strong relative rounded-[1.75rem] p-2.5 shadow-glass">
+                <img
+                  src={profilePhoto}
+                  alt="Foto Edelin Fortuna"
+                  className="w-[220px] sm:w-[260px] aspect-[2/3] object-cover rounded-2xl"
+                />
+              </div>
+            </div>
             <ClusterVisual />
           </motion.div>
         </div>
@@ -712,6 +856,20 @@ export default function App() {
           ))}
         </div>
       </section>
+
+      {/* GALLERY */}
+      <section id="gallery" className="px-6 sm:px-10 max-w-6xl mx-auto py-16">
+        <SectionEyebrow icon={Camera}>Dokumentasi Kegiatan Kampus</SectionEyebrow>
+        <p className="text-sm text-slate-400 max-w-2xl mb-6 -mt-2">
+          Momen dari organisasi, proyek kelompok, dan kegiatan kemahasiswaan selama masa kuliah.
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {GALLERY.map((item, i) => (
+            <GalleryCard key={item.id} item={item} index={i} onOpen={setActiveGalleryItem} />
+          ))}
+        </div>
+      </section>
+      <GalleryLightbox item={activeGalleryItem} onClose={() => setActiveGalleryItem(null)} />
 
       {/* SKILLS */}
       <section id="skills" className="px-6 sm:px-10 max-w-6xl mx-auto py-16">
@@ -839,14 +997,6 @@ export default function App() {
               className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-slate-200 hover:border-teal-accent/50 transition"
             >
               <Github size={16} /> edelinnf
-            </a>
-            <a
-              href="https://edelinfortunaporto.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-slate-200 hover:border-teal-accent/50 transition"
-            >
-              <Globe size={16} /> Portofolio
             </a>
           </div>
         </GlassCard>

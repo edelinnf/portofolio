@@ -58,6 +58,30 @@ edelin-portfolio/
 - **Ganti warna**: ubah token warna di `tailwind.config.js` (`teal.accent`, `violet.accent`, `amber.accent`).
 - **Ganti animasi hero**: komponen `ClusterVisual` di `src/App.jsx` mengatur animasi titik klaster; ubah jumlah node atau warna di array `CLUSTER_COLORS`.
 
+## Cara Menambahkan Foto Dokumentasi Kegiatan Kampus
+
+Section "Dokumentasi Kegiatan Kampus" ada di `src/App.jsx`, datanya di array `GALLERY` (cari komentar `GALLERY — dokumentasi kegiatan kampus`). Saat ini semua slot masih placeholder (kotak abu-abu bertuliskan "Foto belum ditambahkan") karena belum ada foto yang di-upload.
+
+Langkah menambahkan foto asli:
+
+1. Taruh file fotomu di folder `src/assets/gallery/` (buat foldernya kalau belum ada), misalnya `src/assets/gallery/pelantikan-hmsd.jpg`.
+2. Di bagian paling atas `src/App.jsx`, tambahkan baris import seperti ini (mengikuti pola `import profilePhoto from './assets/profile.jpg'` yang sudah ada):
+   ```js
+   import pelantikanHmsd from './assets/gallery/pelantikan-hmsd.jpg'
+   ```
+3. Di array `GALLERY`, ganti `image: null` dengan nama variabel yang baru diimport, dan isi `caption` serta `detail`:
+   ```js
+   {
+     id: 'gallery-1',
+     image: pelantikanHmsd,
+     caption: 'Pelantikan Pengurus HMSD',
+     detail: 'Maret 2024',
+   },
+   ```
+4. Ulangi untuk setiap foto. Boleh tambah atau kurangi jumlah objek di array sesuai jumlah foto yang kamu punya — kartu akan otomatis menyesuaikan di grid.
+
+Klik salah satu foto di section ini akan membuka tampilan lebih besar (lightbox).
+
 ## Cara Menambahkan Proyek Baru
 
 Semua proyek disimpan dalam satu array bernama `PROJECTS` di `src/App.jsx` (cari komentar `PROJECTS — add new projects here`). Untuk menambahkan proyek baru, cukup tambahkan satu objek baru ke dalam array tersebut:
