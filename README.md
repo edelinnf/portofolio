@@ -7,7 +7,14 @@ Website portofolio pribadi dibangun dengan **React + Vite**, animasi **Framer Mo
 - **Palet warna**: latar gelap navy (`#0A0F1F` → `#131B33`) dengan aksen teal (`#5EEAD4`) dan violet (`#A78BFA`) — merepresentasikan dunia data & clustering.
 - **Tipografi**: `Space Grotesk` untuk judul, `Inter` untuk isi, `JetBrains Mono` untuk tanggal/statistik/label data.
 - **Signature element**: animasi hero berupa titik-titik data yang menyebar lalu mengelompok ke dalam 3 klaster berwarna — merepresentasikan langsung publikasi ilmiah tentang **X-Means Clustering**.
-- **Kartu glass**: setiap section (pengalaman, publikasi, organisasi, sertifikat) menggunakan efek kaca buram (`backdrop-blur`) dengan border tipis translucent.
+- **Kartu glass**: setiap section (pengalaman, proyek, publikasi, organisasi, sertifikat) menggunakan efek kaca buram (`backdrop-blur`) dengan border tipis translucent.
+
+## Update Terbaru (sinkron dengan CV terbaru)
+
+- Bagian **Tentang** dan tagline hero diperbarui mengikuti ringkasan profil versi terbaru.
+- Section **Proyek** kini menampilkan 5 proyek: Segmentasi Pelanggan Properti, Klasifikasi Penyakit Kulit (CNN), Analisis NYC Property Sales, Sistem Agen Cerdas AI, dan Segmentasi Memori OS.
+- Section **Keahlian** dipecah menjadi 4 kategori: Bahasa & Basis Data, Machine Learning & Visualisasi, Kompetensi Analitis, dan Nonteknis.
+- Tombol **GitHub** (`github.com/edelinnf`) dan **Portofolio** (`edelinfortunaporto.vercel.app`) ditambahkan di hero dan section kontak.
 
 ## Cara Menjalankan
 
@@ -50,3 +57,26 @@ edelin-portfolio/
 - **Ganti data**: semua konten (pengalaman, organisasi, skill, sertifikat) ada di bagian atas `src/App.jsx` dalam bentuk array — tinggal edit teksnya.
 - **Ganti warna**: ubah token warna di `tailwind.config.js` (`teal.accent`, `violet.accent`, `amber.accent`).
 - **Ganti animasi hero**: komponen `ClusterVisual` di `src/App.jsx` mengatur animasi titik klaster; ubah jumlah node atau warna di array `CLUSTER_COLORS`.
+
+## Cara Menambahkan Proyek Baru
+
+Semua proyek disimpan dalam satu array bernama `PROJECTS` di `src/App.jsx` (cari komentar `PROJECTS — add new projects here`). Untuk menambahkan proyek baru, cukup tambahkan satu objek baru ke dalam array tersebut:
+
+```js
+{
+  id: 'nama-unik-proyek',              // wajib, harus unik
+  title: 'Judul Proyek',
+  period: '2026',                       // tahun atau rentang waktu
+  role: 'Peranmu di proyek ini',
+  description: 'Deskripsi singkat 2-3 kalimat tentang proyek.',
+  tech: ['Python', 'SQL'],              // tag teknologi, tampil sebagai chip
+  highlights: [                         // opsional, angka/statistik penting
+    { label: 'Label statistik', value: 'Nilainya' },
+  ],
+  team: ['Nama Rekan 1', 'Nama Rekan 2'], // opsional, kosongkan [] jika solo
+  link: 'https://github.com/...',       // opsional, isi null jika tidak ada
+},
+```
+
+Tidak perlu mengubah bagian lain — komponen `ProjectCard` dan section Proyek akan otomatis menampilkan kartu baru sesuai urutan di array. Kartu akan tersusun dalam grid 2 kolom secara otomatis.
+

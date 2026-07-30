@@ -14,8 +14,11 @@ import {
   ArrowUpRight,
   Menu,
   X,
+  FolderKanban,
+  ExternalLink,
+  Github,
+  Globe,
 } from 'lucide-react'
-import { title } from 'framer-motion/client'
 
 /* -------------------------------------------------------------------- */
 /*  Data pulled from Edelin Fortuna's CV                                 */
@@ -24,7 +27,7 @@ import { title } from 'framer-motion/client'
 const NAV_LINKS = [
   { id: 'about', label: 'Tentang' },
   { id: 'experience', label: 'Pengalaman' },
-  { id: 'project', label: 'Proyek'},
+  { id: 'project', label: 'Proyek' },
   { id: 'publication', label: 'Publikasi' },
   { id: 'organization', label: 'Organisasi' },
   { id: 'skills', label: 'Keahlian' },
@@ -39,9 +42,10 @@ const EXPERIENCE = [
     period: 'Jun — Jul 2026',
     location: 'Sidoarjo, Indonesia',
     points: [
-      'Mengonversi hasil observasi lapangan dari 48 titik kunjungan pariwisata menjadi data terstruktur di Excel.',
-      'Melakukan validasi dan pembersihan data harian untuk memastikan tidak ada duplikasi atau data responden yang tidak lengkap.',
-      'Mengelola siklus pelaporan data setiap 3 hari untuk menjaga kelancaran database tim statistika pusat.',
+      'Melakukan observasi dan pengumpulan data langsung di 48 titik lokasi destinasi wisata sebagai surveyor lapangan untuk memastikan data akurat, lengkap, dan sesuai kondisi aktual.',
+      'Mengonversi hasil observasi lapangan dari data kualitatif menjadi data kuantitatif terstruktur menggunakan Microsoft Excel.',
+      'Melakukan validasi harian dan data cleaning sebelum pelaporan guna memastikan tidak ada data duplikat maupun informasi responden yang tidak lengkap.',
+      'Mengelola pelaporan data harian bersama koordinator lapangan serta mengirimkan rekapitulasi data setiap 3 hari untuk mendukung pengelolaan database tim statistika.',
     ],
   },
   {
@@ -61,15 +65,85 @@ const EXPERIENCE = [
   },
 ]
 
+/* -------------------------------------------------------------------- */
+/*  PROJECTS — add new projects here as new objects in this array.       */
+/*  Each project can have: id, title, period, role, description,        */
+/*  tech (array of tags), highlights (array of {label, value} stats),   */
+/*  team (array of collaborator names, optional), link (URL, optional). */
+/* -------------------------------------------------------------------- */
+
 const PROJECTS = [
   {
-    id: 'cnn-skin-disease',
-    title: 'Klasifikasi Penyakit Kuliat dengan CNN MobileNetV2',
-    description: 'Membandingkan 5 arsitektur Convolutional Neural Network — CNN Dasar, EfficientNet-B0, InceptionV3, MobileNetV2, dan ResNet50 — untuk mengklasifikasikan 9 kelas penyakit kulit dari 2.357 citra dermoskopi (dataset ISIC via Kaggle), guna menemukan arsitektur dengan akurasi dan efisiensi terbaik.',
-    tech: ['Python', 'TensorFlow/Keras', 'CNN', 'MobileNetV2', 'Transfer Learning'],
-    role: 'Data Analyst',
+    id: 'segmentasi-pelanggan-properti',
+    title: 'Segmentasi Pola Pembayaran Pelanggan Properti — PT XYZ',
+    period: '2026',
+    role: 'Proyek Individu — Data Science',
+    description:
+      'Mengintegrasikan dan mengolah 9.615 data transaksi menjadi 386 profil pelanggan melalui data preprocessing, agregasi, dan feature engineering. Membangun model X-Means Clustering untuk mengidentifikasi 3 segmen pelanggan sebagai dasar strategi komunikasi dan penagihan, lalu memvisualisasikannya lewat aplikasi web Streamlit.',
+    tech: ['Python', 'X-Means Clustering', 'Streamlit', 'Feature Engineering'],
+    highlights: [
+      { label: 'Data ditransformasi', value: '9.615 → 386 profil' },
+      { label: 'Silhouette Score', value: '0,606' },
+      { label: 'Davies-Bouldin Index', value: '0,538' },
+    ],
+    team: [],
     link: null,
-  }
+  },
+  {
+    id: 'cnn-skin-disease',
+    title: 'Klasifikasi Penyakit Kulit dengan CNN (MobileNetV2)',
+    period: '2024',
+    role: 'Anggota Tim — Proposal Penelitian Sains Data, UPN "Veteran" Jawa Timur',
+    description:
+      'Membandingkan 5 arsitektur Convolutional Neural Network — CNN Dasar, EfficientNet-B0, InceptionV3, MobileNetV2, dan ResNet50 — untuk mengklasifikasikan 9 kelas penyakit kulit dari 2.357 citra dermoskopi (dataset ISIC via Kaggle), lengkap dengan image preprocessing dan augmentasi data.',
+    tech: ['Python', 'TensorFlow', 'Keras', 'CNN', 'Transfer Learning'],
+    highlights: [
+      { label: 'Kelas penyakit kulit', value: '9 kelas' },
+      { label: 'Total citra dataset', value: '2.357' },
+      { label: 'Model terpilih terbaik', value: 'MobileNetV2' },
+    ],
+    team: ['Adhisa Shilfadianis Iffadah', 'Gema Khusnul Ma\u2019rifah'],
+    link: null,
+  },
+  {
+    id: 'nyc-property-sales',
+    title: 'Analisis Growth Revenue — NYC Property Sales',
+    period: '2024',
+    role: 'Proyek Individu — Data Analysis',
+    description:
+      'Melakukan prapemrosesan data mentah, penanganan missing value, dan eliminasi data anomali pada dataset NYC Property Sales. Eksplorasi data komprehensif untuk mengidentifikasi tren penjualan, fluktuasi harga pasar, serta faktor penentu nilai transaksi properti guna meningkatkan rata-rata pertumbuhan pendapatan.',
+    tech: ['Python', 'EDA', 'Data Cleaning'],
+    highlights: [],
+    team: [],
+    link: null,
+  },
+  {
+    id: 'agen-cerdas-ai',
+    title: 'Pengembangan Sistem Agen Cerdas Berbasis AI',
+    period: '2024',
+    role: 'Proyek Individu — Reinforcement Learning',
+    description:
+      'Merancang, menguji, dan memvalidasi program agen cerdas berbasis kecerdasan buatan menggunakan PyTorch. Skor performa sistem meningkat signifikan selama simulasi pelatihan.',
+    tech: ['Python', 'PyTorch', 'Reinforcement Learning'],
+    highlights: [
+      { label: 'Skor awal pengujian', value: '1.310' },
+      { label: 'Skor tertinggi saat pelatihan', value: '11.560' },
+    ],
+    team: [],
+    link: null,
+  },
+  {
+    id: 'segmentasi-os',
+    title: 'Segmentasi Memori — Sistem Operasi',
+    period: '2023',
+    role: 'Tugas Mata Kuliah Sistem Operasi',
+    description:
+      'Simulasi skema segmentasi memori untuk mempelajari alokasi ruang alamat dan pemetaan memori pada sistem operasi.',
+    tech: ['Python'],
+    highlights: [],
+    team: [],
+    link: 'https://github.com/edelinnf/Mata-Kuliah-Sistem-Operasi',
+  },
 ]
 
 const ORGANIZATION = [
@@ -105,15 +179,19 @@ const ORGANIZATION = [
 const SKILL_GROUPS = [
   {
     title: 'Bahasa & Basis Data',
-    items: ['Python', 'SQL', 'MySQL', 'PostgreSQL', 'VSCode'],
+    items: ['Python', 'SQL', 'MySQL', 'PostgreSQL', 'VSCode', 'Pentaho'],
   },
   {
-    title: 'Visualisasi Data',
-    items: ['Looker Studio', 'Power BI'],
+    title: 'Machine Learning & Visualisasi',
+    items: ['TensorFlow', 'Keras', 'Scikit-learn', 'Looker Studio', 'Power BI'],
   },
   {
-    title: 'Produktivitas',
-    items: ['Microsoft Office', 'Google Workspace'],
+    title: 'Kompetensi Analitis',
+    items: ['Peramalan Deret Waktu', 'Klasifikasi', 'Klasterisasi', 'Pengolahan Data', 'Pengumpulan Data'],
+  },
+  {
+    title: 'Nonteknis',
+    items: ['Komunikasi', 'Kemampuan Beradaptasi', 'Kerja Sama Tim', 'Pemecahan Masalah'],
   },
 ]
 
@@ -125,8 +203,8 @@ const CERTIFICATES = [
   },
   {
     title: 'Hak Cipta Program Komputer "PROPALYSIS"',
-    org: 'Kementerian Hukum Republik Indonesia — No. 000989617',
-    year: 'Okt 2025',
+    org: 'Kementerian Hukum Republik Indonesia',
+    year: '2025',
   },
   {
     title: 'Intensive Bootcamp (2 Minggu)',
@@ -307,6 +385,70 @@ function TimelineItem({ item, index }) {
   )
 }
 
+function ProjectCard({ project, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: 'easeOut' }}
+      className="glass rounded-2xl p-6 sm:p-7 flex flex-col h-full"
+    >
+      <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+        <h3 className="font-display text-lg text-white max-w-md">{project.title}</h3>
+        <span className="font-mono text-xs text-muted whitespace-nowrap">{project.period}</span>
+      </div>
+      <p className="text-sm text-teal-accent mb-3">{project.role}</p>
+      <p className="text-sm text-slate-300 leading-relaxed mb-4">{project.description}</p>
+
+      {project.highlights?.length > 0 && (
+        <div className="flex flex-wrap gap-3 mb-4">
+          {project.highlights.map((h, i) => (
+            <div key={i} className="glass-strong rounded-lg px-3 py-2">
+              <div className="font-mono text-sm text-white">{h.value}</div>
+              <div className="text-[11px] text-muted">{h.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="flex flex-wrap gap-2 mb-4">
+        {project.tech.map((t) => (
+          <span
+            key={t}
+            className="font-mono text-xs rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-slate-300"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      {project.team?.length > 0 && (
+        <p className="text-xs text-muted mb-4">
+          Bersama {project.team.join(', ')}
+        </p>
+      )}
+
+      <div className="mt-auto pt-2">
+        {project.link ? (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-teal-accent hover:brightness-110 transition"
+          >
+            <Github size={14} /> Lihat repositori <ExternalLink size={12} />
+          </a>
+        ) : (
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+            Proposal penelitian — belum dipublikasikan secara publik
+          </span>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
 /* -------------------------------------------------------------------- */
 /*  App                                                                   */
 /* -------------------------------------------------------------------- */
@@ -404,12 +546,14 @@ export default function App() {
               <span className="text-gradient">keputusan yang tepat.</span>
             </h1>
             <p className="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-              Lulusan Sains Data (IPK 3,73) dengan pengalaman sebagai analis
-              data di instansi pemerintah dan rekam jejak publikasi ilmiah.
-              Terbiasa mengolah data dengan Python &amp; SQL, membangun
-              visualisasi di Looker Studio, dan menerapkan{' '}
+              Lulusan Sains Data (IPK 3,73) dengan pengalaman mengumpulkan,
+              mengolah, menganalisis, dan memvalidasi data melalui proyek
+              akademik, penelitian, magang, dan survei lapangan. Terbiasa
+              menggunakan Python, SQL, Looker Studio, dan Power BI, serta
+              menerapkan{' '}
               <span className="text-teal-accent">X-Means Clustering</span>{' '}
-              untuk menghasilkan insight yang bisa ditindaklanjuti.
+              dan metode <span className="text-violet-accent">machine learning</span>{' '}
+              lainnya untuk menghasilkan insight yang bisa ditindaklanjuti.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -425,6 +569,22 @@ export default function App() {
                 className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm text-slate-200 hover:border-teal-accent/50 transition"
               >
                 <Linkedin size={16} /> LinkedIn
+              </a>
+              <a
+                href="https://github.com/edelinnf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm text-slate-200 hover:border-teal-accent/50 transition"
+              >
+                <Github size={16} /> GitHub
+              </a>
+              <a
+                href="https://edelinfortunaporto.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm text-slate-200 hover:border-teal-accent/50 transition"
+              >
+                <Globe size={16} /> Portofolio
               </a>
             </div>
           </motion.div>
@@ -448,13 +608,15 @@ export default function App() {
               Profil Singkat
             </h2>
             <p className="text-slate-300 leading-relaxed">
-              Aktif dalam kepemimpinan organisasi kemahasiswaan dan pernah
-              meraih penghargaan Best Group Capstone Project pada program
-              Data Analytic. Berpengalaman mengelola data lapangan hingga
-              data kebencanaan, dari pembersihan dan validasi hingga
-              pemodelan yang mendukung pengambilan keputusan. Siap
-              berkontribusi mengubah data menjadi informasi bernilai bagi
-              organisasi.
+              Terbiasa menggunakan Microsoft Excel, Python, SQL, Looker
+              Studio, dan Power BI untuk mengolah data, menyusun dashboard,
+              serta menyajikan informasi secara jelas dan terstruktur.
+              Berpengalaman mengelola data lapangan hingga data kebencanaan,
+              dari pembersihan dan validasi hingga pemodelan machine learning
+              yang mendukung pengambilan keputusan. Memiliki kemampuan
+              analitis, teliti dalam bekerja, mudah beradaptasi, serta mampu
+              berkomunikasi dan bekerja sama dengan baik dalam tim maupun
+              dengan berbagai pihak.
             </p>
           </GlassCard>
           <GlassCard className="p-6 sm:p-8">
@@ -488,32 +650,11 @@ export default function App() {
       </section>
 
       {/* PROJECT */}
-      <section id="skills" className="px-6 sm:px-10 max-w-6xl mx-auto py-16">
-        <SectionEyebrow icon={Wrench}>Project</SectionEyebrow>
-        <div className="grid sm:grid-cols-3 gap-5">
-          {SKILL_GROUPS.map((group, i) => (
-            <motion.div
-              key={group.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass rounded-2xl p-6"
-            >
-              <h3 className="font-display text-base text-white mb-4">
-                {group.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="font-mono text-xs rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-slate-300"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+      <section id="project" className="px-6 sm:px-10 max-w-6xl mx-auto py-16">
+        <SectionEyebrow icon={FolderKanban}>Proyek</SectionEyebrow>
+        <div className="grid md:grid-cols-2 gap-6">
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
       </section>
@@ -575,7 +716,7 @@ export default function App() {
       {/* SKILLS */}
       <section id="skills" className="px-6 sm:px-10 max-w-6xl mx-auto py-16">
         <SectionEyebrow icon={Wrench}>Keahlian Teknis</SectionEyebrow>
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SKILL_GROUPS.map((group, i) => (
             <motion.div
               key={group.title}
@@ -690,6 +831,22 @@ export default function App() {
               className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-slate-200 hover:border-teal-accent/50 transition"
             >
               <Linkedin size={16} /> edelinfrtn
+            </a>
+            <a
+              href="https://github.com/edelinnf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-slate-200 hover:border-teal-accent/50 transition"
+            >
+              <Github size={16} /> edelinnf
+            </a>
+            <a
+              href="https://edelinfortunaporto.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-slate-200 hover:border-teal-accent/50 transition"
+            >
+              <Globe size={16} /> Portofolio
             </a>
           </div>
         </GlassCard>
