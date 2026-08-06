@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import profilePhoto from './assets/profile.jpg'
 import gallery1 from './assets/gallery/gallery-1.jpg'
@@ -302,84 +302,6 @@ const AWARDS = [
     year: '2023',
   },
 ]
-
-/* -------------------------------------------------------------------- */
-/*  Cluster hero visual — signature element                              */
-/*  Visualizes X-Means clustering: unlabeled points that converge into   */
-/*  dynamically discovered clusters, echoing Edelin's own publication.   */
-/* -------------------------------------------------------------------- */
-
-const CLUSTER_COLORS = ['#5EEAD4', '#A78BFA', '#FBBF24']
-
-function ClusterVisual() {
-  const nodes = useMemo(() => {
-    const centers = [
-      { x: 90, y: 80 },
-      { x: 230, y: 170 },
-      { x: 120, y: 250 },
-    ]
-    return Array.from({ length: 27 }).map((_, i) => {
-      const cluster = i % 3
-      const center = centers[cluster]
-      const angle = Math.random() * Math.PI * 2
-      const radius = 18 + Math.random() * 34
-      const scatterX = 40 + Math.random() * 260
-      const scatterY = 30 + Math.random() * 300
-      return {
-        id: i,
-        cluster,
-        color: CLUSTER_COLORS[cluster],
-        scatter: { x: scatterX, y: scatterY },
-        settled: {
-          x: center.x + Math.cos(angle) * radius,
-          y: center.y + Math.sin(angle) * radius,
-        },
-        delay: 0.4 + Math.random() * 1.1,
-        size: 3 + Math.random() * 3,
-      }
-    })
-  }, [])
-
-  return (
-    <div className="relative h-[340px] w-full max-w-[340px] mx-auto lg:mx-0">
-      <svg viewBox="0 0 320 340" className="h-full w-full overflow-visible">
-        {nodes.map((n) => (
-          <motion.circle
-            key={n.id}
-            cx={n.scatter.x}
-            cy={n.scatter.y}
-            r={n.size}
-            fill={n.color}
-            initial={{ opacity: 0, cx: n.scatter.x, cy: n.scatter.y }}
-            animate={{
-              opacity: 0.9,
-              cx: [n.scatter.x, n.scatter.x, n.settled.x],
-              cy: [n.scatter.y, n.scatter.y, n.settled.y],
-            }}
-            transition={{
-              duration: 2.6,
-              times: [0, 0.25, 1],
-              delay: n.delay,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              repeatDelay: 3.4,
-              repeatType: 'reverse',
-            }}
-            style={{ filter: `drop-shadow(0 0 6px ${n.color}aa)` }}
-          />
-        ))}
-      </svg>
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 1, 0] }}
-        transition={{ duration: 6, repeat: Infinity, times: [0, 0.35, 0.75, 1] }}
-        className="absolute bottom-1 right-2 font-mono text-[11px] text-muted tracking-wide"
-      >
-        k = 3 · X-Means
-      </motion.span>
-    </div>
-  )
-}
 
 /* -------------------------------------------------------------------- */
 /*  Reusable pieces                                                      */
@@ -737,7 +659,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-            className="flex flex-col items-center lg:items-end gap-6"
+            className="flex justify-center lg:justify-end"
           >
             <div className="relative">
               <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-teal-accent/20 to-violet-accent/20 blur-xl" />
@@ -749,7 +671,6 @@ export default function App() {
                 />
               </div>
             </div>
-            <ClusterVisual />
           </motion.div>
         </div>
       </section>
