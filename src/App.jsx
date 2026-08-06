@@ -47,7 +47,7 @@ const NAV_LINKS = [
 const EXPERIENCE = [
   {
     company: 'PT Cemerlang Statistika Indonesia (StatsMe!)',
-    role: 'Enumerator Proyek — Dinas Kepemudaan, Olahraga & Pariwisata Kab. Sidoarjo',
+    role: 'Surveyor — Dinas Kepemudaan, Olahraga & Pariwisata Kab. Sidoarjo',
     period: 'Jun — Jul 2026',
     location: 'Sidoarjo, Indonesia',
     points: [
@@ -70,6 +70,17 @@ const EXPERIENCE = [
     stats: [
       { label: 'Akurasi klasifikasi', value: '56% → 92%' },
       { label: 'Akurasi analisis spasial', value: '95,92%' },
+    ],
+  },
+  {
+    company: 'RevoU Tech Academy — Kampus Merdeka',
+    role: 'Data & Software Engineering Cohort (Studi Independen MSIB)',
+    period: 'Agu — Des 2023',
+    location: 'Online',
+    points: [
+      'Membangun aplikasi web menggunakan HTML, CSS, JavaScript, Git, dan integrasi database dengan menerapkan praktik pengembangan perangkat lunak secara kolaboratif.',
+      'Mengerjakan proyek analitik data mencakup persiapan data, query SQL, visualisasi, hingga rekomendasi bisnis dalam tim berbasis agile.',
+      'Menerapkan Python, SQL, dan Looker Studio untuk membersihkan, menganalisis, dan memvisualisasikan data pada studi kasus industri dan proyek capstone.',
     ],
   },
 ]
@@ -197,37 +208,37 @@ const GALLERY = [
   {
     id: 'gallery-1',
     image: gallery1,
-    caption: 'Yudisium September Program Studi Sains Data',
-    detail: 'Mahasiswa Sains Data yang mengikuti Yudisium periode September 2025 Fakultas Ilmu Komputer UPN "Veteran" Jawa Timur.',
+    caption: 'Kunjungan ke International Office UPN "Veteran" Jawa Timur',
+    detail: 'Delegasi mahasiswa berfoto bersama di depan International Office kampus.',
   },
   {
     id: 'gallery-2',
     image: gallery2,
-    caption: 'Departemen Advokasi & Kesejahteraan Mahasiswa — HIMASADA',
-    detail: 'Kebersamaan bersama tim advokasi Himpunan Mahasiswa Sains Data saat menjalankan agenda Posko Mahasiswa Baru.',
+    caption: 'Departemen Advokasi & Kesejahteraan Mahasiswa — HMSD',
+    detail: 'Kebersamaan bersama tim advokasi Himpunan Mahasiswa Sains Data.',
   },
   {
     id: 'gallery-3',
     image: gallery3,
-    caption: 'Wisuda ke-96 UPN "Veteran" Jawa Timur',
+    caption: 'Wisuda — Fakultas Ilmu Komputer',
     detail: 'Momen kelulusan di depan gedung Fakultas Ilmu Komputer, UPN "Veteran" Jawa Timur.',
   },
   {
     id: 'gallery-4',
     image: gallery4,
-    caption: 'Seminar Hasil',
-    detail: 'Dokumentasi saya setelah melakukan sidang seminar hasil dan dinyatakan lulus dengan revisi.',
+    caption: 'Kegiatan di Lingkungan Kampus UPN "Veteran" Jawa Timur',
+    detail: 'Dokumentasi keseharian sebagai mahasiswa Sains Data.',
   },
   {
     id: 'gallery-5',
     image: gallery5,
-    caption: 'Kebersamaan bersama Rekan Organisasi Fakultas Ilmu Komputer',
-    detail: 'Dokumentasi kunjungan dan bincang santai bersama teman-teman BEM Fakultas Ilmu Komputer di luar jam kegiatan formal.',
+    caption: 'Kebersamaan bersama Rekan Organisasi',
+    detail: 'Momen santai bersama teman-teman seperjuangan di luar jam kegiatan formal.',
   },
   {
     id: 'gallery-6',
     image: gallery6,
-    caption: 'Himpunan Mahasiswa Sains Data',
+    caption: 'Kumpul Bersama HIMASADA',
     detail: 'Foto bersama pengurus dan anggota Himpunan Mahasiswa Sains Data (HIMASADA).',
   },
 ]
@@ -515,7 +526,7 @@ function GalleryCard({ item, index, onOpen }) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: 'easeOut' }}
       whileHover={{ y: -4 }}
-      className="glass rounded-2xl overflow-hidden text-left group cursor-pointer"
+      className="glass rounded-2xl overflow-hidden text-left group cursor-pointer shrink-0 w-[78vw] sm:w-[320px] snap-start"
     >
       <div className="aspect-[4/3] w-full relative bg-white/5">
         {item.image ? (
@@ -618,19 +629,19 @@ export default function App() {
 
       {/* NAV */}
       <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
-        <nav className="glass-strong w-full max-w-4xl rounded-full px-5 py-3 flex items-center justify-between shadow-glass">
+        <nav className="glass-strong w-full max-w-6xl rounded-full px-6 py-3 flex items-center justify-between gap-4 shadow-glass">
           <button
             onClick={() => scrollTo('top')}
-            className="font-display font-semibold tracking-tight text-white"
+            className="font-display font-semibold tracking-tight text-white shrink-0"
           >
             Edelin<span className="text-teal-accent">.</span>
           </button>
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-6">
             {NAV_LINKS.map((l) => (
               <button
                 key={l.id}
                 onClick={() => scrollTo(l.id)}
-                className="text-sm text-slate-300 hover:text-teal-accent transition-colors"
+                className="text-sm text-slate-300 hover:text-teal-accent transition-colors whitespace-nowrap"
               >
                 {l.label}
               </button>
@@ -638,13 +649,13 @@ export default function App() {
           </div>
           <button
             onClick={() => scrollTo('contact')}
-            className="hidden md:inline-flex items-center gap-1 rounded-full bg-teal-accent/15 border border-teal-accent/40 px-4 py-1.5 text-sm text-teal-accent hover:bg-teal-accent/25 transition-colors"
+            className="hidden lg:inline-flex items-center gap-1 rounded-full bg-teal-accent/15 border border-teal-accent/40 px-4 py-1.5 text-sm text-teal-accent hover:bg-teal-accent/25 transition-colors shrink-0 whitespace-nowrap"
           >
             Hubungi <ArrowUpRight size={14} />
           </button>
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden text-slate-200"
+            className="lg:hidden text-slate-200"
             aria-label="Buka menu"
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -656,7 +667,7 @@ export default function App() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="fixed top-20 inset-x-4 z-40 glass-strong rounded-2xl p-4 flex flex-col gap-1 md:hidden"
+          className="fixed top-20 inset-x-4 z-40 glass-strong rounded-2xl p-4 flex flex-col gap-1 lg:hidden"
         >
           {NAV_LINKS.map((l) => (
             <button
@@ -863,11 +874,14 @@ export default function App() {
         <p className="text-sm text-slate-400 max-w-2xl mb-6 -mt-2">
           Momen dari organisasi, proyek kelompok, dan kegiatan kemahasiswaan selama masa kuliah.
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex gap-5 overflow-x-auto pb-4 -mx-6 px-6 sm:-mx-10 sm:px-10 snap-x snap-mandatory scroll-smooth [scrollbar-width:thin] [scrollbar-color:rgba(94,234,212,0.4)_transparent]">
           {GALLERY.map((item, i) => (
             <GalleryCard key={item.id} item={item} index={i} onOpen={setActiveGalleryItem} />
           ))}
         </div>
+        <p className="mt-3 text-xs text-muted font-mono">
+          ← geser untuk lihat foto lainnya →
+        </p>
       </section>
       <GalleryLightbox item={activeGalleryItem} onClose={() => setActiveGalleryItem(null)} />
 
