@@ -122,7 +122,7 @@ const PROJECTS = [
       { label: 'Total citra dataset', value: '2.357' },
       { label: 'Model terpilih terbaik', value: 'MobileNetV2' },
     ],
-    team: ['Adhisa Shilfadianis Iffadah', 'Gema Khusnul Ma\u2019rifah'],
+    team: [],
     link: null,
   },
   {
@@ -162,7 +162,7 @@ const PROJECTS = [
     tech: ['Python'],
     highlights: [],
     team: [],
-    link: 'https://github.com/edelinnf/Mata-Kuliah-Sistem-Operasi',
+    link: null,
   },
 ]
 
@@ -612,7 +612,7 @@ export default function App() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <p className="font-mono text-sm text-teal-accent mb-4 tracking-wide">
-              Data Analyst · Data Scientist
+              Data Scientist · Data Analyst · IT Specialist
             </p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] text-white">
               Mengubah data mentah
