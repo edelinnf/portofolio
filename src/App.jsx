@@ -51,10 +51,9 @@ const EXPERIENCE = [
     period: 'Jun — Jul 2026',
     location: 'Sidoarjo, Indonesia',
     points: [
-      'Melakukan observasi dan pengumpulan data langsung di 48 titik lokasi destinasi wisata sebagai surveyor lapangan untuk memastikan data akurat, lengkap, dan sesuai kondisi aktual.',
-      'Mengonversi hasil observasi lapangan dari data kualitatif menjadi data kuantitatif terstruktur menggunakan Microsoft Excel.',
-      'Melakukan validasi harian dan data cleaning sebelum pelaporan guna memastikan tidak ada data duplikat maupun informasi responden yang tidak lengkap.',
-      'Mengelola pelaporan data harian bersama koordinator lapangan serta mengirimkan rekapitulasi data setiap 3 hari untuk mendukung pengelolaan database tim statistika.',
+      'Melakukan survei langsung di 48 destinasi wisata dengan mengamati kondisi lokasi, mengumpulkan data primer dari perwakilan pihak destinasi wisata, dan memvalidasi informasi lapangan demi memastikan dataset yang andal untuk analisis statistik.',
+      'Mengonversi hasil observasi dan data survei lapangan menjadi dataset kuantitatif terstruktur menggunakan Microsoft Excel untuk mendukung konsistensi pelaporan dan analisis statistik.',
+      'Memvalidasi dan membersihkan data yang terkumpul guna menghilangkan data duplikat dan informasi yang tidak lengkap sebelum diserahkan untuk pelaporan statistik terpusat.',
     ],
   },
   {
@@ -63,9 +62,10 @@ const EXPERIENCE = [
     period: 'Feb — Jun 2024',
     location: 'Surabaya, Indonesia',
     points: [
-      'Merancang sistem klasifikasi digital untuk respons masyarakat pada layanan Call Center 112, meningkatkan akurasi dari 56% menjadi 92%.',
-      'Mengimplementasikan analisis spasial untuk mengelompokkan tingkat kerawanan titik genangan banjir di Surabaya dengan akurasi 95,92%.',
-      'Merancang struktur database relasional MySQL dan mengeksekusi migrasi data logistik untuk sistem manajemen BPBD Kota Surabaya.',
+      'Memelihara dan memperbarui basis data insiden untuk memastikan keakuratan pencatatan operasional dalam pemantauan dan pelaporan respons bencana.',
+      'Merancang dan mengoptimalkan sistem klasifikasi digital untuk menganalisis respons masyarakat terhadap layanan Call Center 112, meningkatkan akurasi sistem dari 56% menjadi 92%.',
+      'Menerapkan algoritma analisis spasial untuk mengklasifikasikan wilayah rawan banjir berdasarkan luas genangan, kedalaman air, dan durasi genangan, mencapai akurasi 95,92% guna mendukung perencanaan mitigasi bencana.',
+      'Merancang skema database relasional MySQL dan melakukan migrasi data logistik serta insiden untuk mendukung sistem informasi berbasis web BPBD Kota Surabaya dan meningkatkan pengelolaan data.',
     ],
     stats: [
       { label: 'Akurasi klasifikasi', value: '56% → 92%' },
@@ -99,12 +99,13 @@ const PROJECTS = [
     period: '2026',
     role: 'Proyek Individu — Data Science',
     description:
-      'Mengintegrasikan dan mengolah 9.615 data transaksi menjadi 386 profil pelanggan melalui data preprocessing, agregasi, dan feature engineering. Membangun model X-Means Clustering untuk mengidentifikasi 3 segmen pelanggan sebagai dasar strategi komunikasi dan penagihan, lalu memvisualisasikannya lewat aplikasi web Streamlit.',
+      'Mengintegrasikan dan mengolah 9.615 data transaksi properti menjadi 386 profil pelanggan melalui data preprocessing, agregasi, dan feature engineering untuk mempersiapkan data segmentasi. Mengembangkan model X-Means Clustering untuk mengelompokkan pelanggan ke dalam tiga kelompok perilaku pembayaran, lalu membangun aplikasi web interaktif berbasis Streamlit untuk memvisualisasikan hasil segmentasi dan mendukung eksplorasi data.',
     tech: ['Python', 'X-Means Clustering', 'Streamlit', 'Feature Engineering'],
     highlights: [
       { label: 'Data ditransformasi', value: '9.615 → 386 profil' },
       { label: 'Silhouette Score', value: '0,606' },
       { label: 'Davies-Bouldin Index', value: '0,538' },
+      { label: 'Calinski-Harabasz Index', value: '472,924' },
     ],
     team: [],
     link: null,
@@ -115,14 +116,14 @@ const PROJECTS = [
     period: '2024',
     role: 'Anggota Tim — Proposal Penelitian Sains Data, UPN "Veteran" Jawa Timur',
     description:
-      'Membandingkan 5 arsitektur Convolutional Neural Network — CNN Dasar, EfficientNet-B0, InceptionV3, MobileNetV2, dan ResNet50 — untuk mengklasifikasikan 9 kelas penyakit kulit dari 2.357 citra dermoskopi (dataset ISIC via Kaggle), lengkap dengan image preprocessing dan augmentasi data.',
+      'Mengembangkan model deep learning berbasis Convolutional Neural Network untuk mengklasifikasikan 2.357 citra penyakit kulit ke dalam 9 kelas menggunakan dataset ISIC dari Kaggle. Menerapkan image preprocessing dan augmentasi data, lalu membandingkan 5 arsitektur CNN — CNN Dasar, EfficientNet-B0, InceptionV3, MobileNetV2, dan ResNet50 — menggunakan metrik accuracy, precision, recall, F1-score, dan confusion matrix untuk menentukan model dengan performa terbaik.',
     tech: ['Python', 'TensorFlow', 'Keras', 'CNN', 'Transfer Learning'],
     highlights: [
       { label: 'Kelas penyakit kulit', value: '9 kelas' },
       { label: 'Total citra dataset', value: '2.357' },
       { label: 'Model terpilih terbaik', value: 'MobileNetV2' },
     ],
-    team: [],
+    team: ['Adhisa Shilfadianis Iffadah', 'Gema Khusnul Ma\u2019rifah'],
     link: null,
   },
   {
@@ -131,23 +132,27 @@ const PROJECTS = [
     period: '2024',
     role: 'Proyek Individu — Data Analysis',
     description:
-      'Melakukan prapemrosesan data mentah, penanganan missing value, dan eliminasi data anomali pada dataset NYC Property Sales. Eksplorasi data komprehensif untuk mengidentifikasi tren penjualan, fluktuasi harga pasar, serta faktor penentu nilai transaksi properti guna meningkatkan rata-rata pertumbuhan pendapatan.',
-    tech: ['Python', 'EDA', 'Data Cleaning'],
-    highlights: [],
+      'Mempersiapkan dan menganalisis 84.548 data transaksi properti melalui data cleaning, feature engineering, dan exploratory data analysis (EDA) untuk mengidentifikasi tren penjualan dan karakteristik pasar properti di New York City. Membangun dashboard interaktif di Looker Studio untuk memvisualisasikan KPI penjualan, tren pendapatan, dan distribusi properti lintas dimensi bisnis, lalu menyusun rekomendasi bisnis untuk mendukung peningkatan rata-rata pertumbuhan pendapatan sebesar 3% melalui segmentasi wilayah, segmentasi kelas bangunan, dan optimalisasi promosi.',
+    tech: ['Python', 'EDA', 'Looker Studio', 'Data Cleaning'],
+    highlights: [
+      { label: 'Data dianalisis', value: '84.548 transaksi' },
+      { label: 'Target peningkatan revenue', value: '3%' },
+    ],
     team: [],
     link: null,
   },
   {
     id: 'agen-cerdas-ai',
-    title: 'Pengembangan Sistem Agen Cerdas Berbasis AI',
+    title: 'Deep Q-Network Agent untuk Game Phoenix (Atari)',
     period: '2024',
     role: 'Proyek Individu — Reinforcement Learning',
     description:
-      'Merancang, menguji, dan memvalidasi program agen cerdas berbasis kecerdasan buatan menggunakan PyTorch. Skor performa sistem meningkat signifikan selama simulasi pelatihan.',
-    tech: ['Python', 'PyTorch', 'Reinforcement Learning'],
+      'Membangun agen Deep Q-Network (DQN) menggunakan PyTorch untuk mempelajari dan memainkan game Phoenix pada Atari Learning Environment melalui reinforcement learning. Menerapkan experience replay, epsilon-greedy exploration, frame preprocessing, dan pembaruan target network untuk meningkatkan stabilitas dan performa pelatihan model.',
+    tech: ['Python', 'PyTorch', 'Deep Q-Network', 'Reinforcement Learning'],
     highlights: [
-      { label: 'Skor awal pengujian', value: '1.310' },
-      { label: 'Skor tertinggi saat pelatihan', value: '11.560' },
+      { label: 'Epoch pelatihan', value: '100 epoch' },
+      { label: 'Reward tertinggi', value: '11.560' },
+      { label: 'Reward pengujian awal', value: '1.310' },
     ],
     team: [],
     link: null,
@@ -162,7 +167,7 @@ const PROJECTS = [
     tech: ['Python'],
     highlights: [],
     team: [],
-    link: null,
+    link: 'https://github.com/edelinnf/Mata-Kuliah-Sistem-Operasi',
   },
 ]
 
@@ -612,7 +617,7 @@ export default function App() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <p className="font-mono text-sm text-teal-accent mb-4 tracking-wide">
-              Data Scientist · Data Analyst · IT Specialist
+              Data Analyst · Data Scientist
             </p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] text-white">
               Mengubah data mentah
