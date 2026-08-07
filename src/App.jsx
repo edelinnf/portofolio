@@ -46,7 +46,7 @@ const NAV_LINKS = [
 
 const EXPERIENCE = [
   {
-    company: 'PT Cemerlang Statistika Indonesia (StatsMe!)',
+    company: 'P Cemerlang Statistika Indonesia (StatsMe!)',
     role: 'Surveyor — Dinas Kepemudaan, Olahraga & Pariwisata Kab. Sidoarjo',
     period: 'Jun — Jul 2026',
     location: 'Sidoarjo, Indonesia',
